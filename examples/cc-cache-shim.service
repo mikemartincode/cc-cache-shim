@@ -1,0 +1,21 @@
+# Example systemd *user* unit for the shim.
+#   Install:  cp cc-cache-shim.service ~/.config/systemd/user/
+#             systemctl --user daemon-reload && systemctl --user enable --now cc-cache-shim
+#   Logs:     journalctl --user -u cc-cache-shim -f
+# Adjust ExecStart to your checkout / virtualenv paths.
+
+[Unit]
+Description=CC cache shim (stream->nonstream->restream for MiniMax prompt-cache recovery)
+After=network.target
+
+[Service]
+ExecStart=%h/cc-cache-shim/.venv/bin/python -m cc_cache_shim.proxy
+WorkingDirectory=%h/cc-cache-shim
+Environment=GATEWAY_BASE=http://localhost:4000
+Environment=SHIM_HOST=127.0.0.1
+Environment=SHIM_PORT=4100
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

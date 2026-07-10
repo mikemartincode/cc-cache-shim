@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cc-cache-shim"
+version = "0.1.0"
+description = "Prompt-cache recovery proxy: forces stream:false upstream, re-emits the Anthropic Messages SSE sequence to the client"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Mike Martin" }]
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "httpx",
+    "uvicorn",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["cc_cache_shim"]
