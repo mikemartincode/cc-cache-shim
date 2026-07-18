@@ -55,6 +55,15 @@ cache hit rate** - versus effectively 0% with streaming straight through. Cache-
 tokens are billed at a fraction of fresh input tokens, and time-to-first-token on cached
 turns drops with the prefix re-read.
 
+The SSE re-emission itself is test-pinned (`tests/test_proxy.py`, mock upstream, no
+gateway needed): stream:true forwarded stream:false, the exact event sequence Claude
+Code expects for every block type, real usage (cache_read included) preserved,
+content:null normalized instead of hanging the agent, 529-transient/4xx-fatal retries.
+
+```bash
+pip install -e '.[dev]' && pytest tests/ -q   # 7 passed
+```
+
 A related load observation baked into the retry table: MiniMax's real overload signal is
 **HTTP 529** (`overloaded_error`), not 429 - measured zero 429s up to ~7k RPM.
 
