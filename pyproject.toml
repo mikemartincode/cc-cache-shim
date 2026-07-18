@@ -21,3 +21,7 @@ packages = ["cc_cache_shim"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/mikemartincode/cc-cache-shim"
+Repository = "https://github.com/mikemartincode/cc-cache-shim"

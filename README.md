@@ -1,5 +1,7 @@
 # cc-cache-shim
 
+[![ci](https://github.com/mikemartincode/cc-cache-shim/actions/workflows/ci.yml/badge.svg)](https://github.com/mikemartincode/cc-cache-shim/actions/workflows/ci.yml)
+
 A small FastAPI proxy that recovers prompt-caching for Claude Code when it talks to
 MiniMax models through a LiteLLM gateway.
 
